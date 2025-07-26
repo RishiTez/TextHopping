@@ -1,50 +1,104 @@
-# Welcome to your Expo app 👋
+# 🛰️ TextHopping
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+**TextHopping** is a privacy-first, peer-to-peer, serverless messaging application built with **React Native + Expo**.  
+It enables secure communication without centralized servers, giving users full control over their identity, data, and device storage.
 
-## Get started
+---
 
-1. Install dependencies
+## 🚀 Features
 
-   ```bash
-   npm install
-   ```
+- 🔐 **Identity System**
+  - Based on user-defined **3 secret words + password**
+  - Uses biometric authentication (Face ID / Fingerprint)
+  - Generates a cryptographic Ed25519 keypair for each identity
+  - Same 3 words + password = same identity across devices (if biometrics allow)
 
-2. Start the app
+- 💬 **Messaging Architecture**
+  - Uses **WebRTC** (with STUN-only) for real-time peer-to-peer communication
+  - Messages are **signed**, **encrypted**, and **locally queued** if peer is offline
+  - Devices store only the **last 500 messages per contact**, auto-cleaned
 
-   ```bash
-   npx expo start
-   ```
+- 📱 **QR-Based Peer Discovery**
+  - No usernames, phone numbers, or central registries
+  - Connect by scanning a QR code that contains your alias, public key, and peerId
+  - Both users must mutually accept a connection
 
-In the output, you'll find options to open the app in a
+- 🔒 **Full Local Encryption**
+  - All messages are stored only on your device
+  - Encrypted at rest using device-specific keys and biometrics
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+- 🎨 **Minimalist UI**
+  - Clean and simple navigation (stack-based)
+  - Custom color scheme: `Cyan (#00BCD4)`, `Indigo (#3F51B5)`, `Black (#000000)`
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+---
 
-## Get a fresh project
+## 📂 Folder Structure
 
-When you're ready, run:
+app/
+    login/index.tsx # Login screen (3 words + password)
+    create/index.tsx # Create new identity screen (WIP)
+     home/index.tsx # Chat home screen
+    chat/[peerId].tsx # Chat thread per peer
+    settings/index.tsx # Settings screen
+    _layout.tsx # Stack navigation setup
 
-```bash
-npm run reset-project
-```
+---
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## 🛠 Tech Stack
 
-## Learn more
+- **Frontend:** React Native + Expo
+- **Navigation:** expo-router
+- **Local Storage:** AsyncStorage (with encryption)
+- **Biometrics:** expo-local-authentication
+- **Camera/QR:** react-native-vision-camera (planned)
+- **P2P Communication:** WebRTC (STUN-only)
 
-To learn more about developing your project with Expo, look at the following resources:
+---
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+## 🧪 Status
 
-## Join the community
+> 🧩 This project is under active development. Major modules like:
+> - biometric key locking
+> - encrypted local storage
+> - WebRTC signaling
+> - QR code scanner
+> are being incrementally added.
 
-Join our community of developers creating universal apps.
+---
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## 🧠 Philosophy
+
+> TextHopping is designed to give **you** full ownership over your data.  
+> No server = no middleman. Your identity is yours alone.
+
+---
+
+## 🤝 Contributing
+
+We welcome contributions from the community!
+
+Whether you're fixing bugs, adding features, improving UI/UX, or working on performance — PRs are appreciated.
+
+### Steps to Contribute
+
+1. 🍴 Fork the repository
+2. 👯 Clone your fork locally
+3. 📦 Run `npm install`
+4. 🚀 Run `npx expo start`
+5. 📬 Submit a Pull Request with clear title & description
+
+---
+
+## 📃 License
+
+This project is open-source under the [MIT License](LICENSE).
+
+---
+
+## ✨ Credits
+
+Built with ❤️ by the TextHopping team and the open-source community.
+
+---
+
